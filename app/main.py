@@ -1,5 +1,6 @@
 import os
 
+
 def copy_file(command : str) -> None:
     if command is None or "cp" not in command:
         print('Command empty or not "cp". Returning...')
@@ -13,7 +14,6 @@ def copy_file(command : str) -> None:
         print("Sorry, input is not valid!")
         return
     if os.path.exists(source_file) and source_file != dest_file:
-        #and not os.path.exists(dest_file):
         with open(source_file, "r") as source, open(dest_file, "w") as dest:
             for line in source.readlines():
                 dest.writelines(line)
