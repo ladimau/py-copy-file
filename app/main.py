@@ -8,14 +8,26 @@ def copy_file(command : str) -> None:
     else:
         word_list = command.split(" ")
     try:
-        source_file = word_list[1]
-        dest_file = word_list[2]
+        cp_command = word_list[0]
+        src_file_name = word_list[1]
+        dest_file_name = word_list[2]
     except IndexError:
         print("Sorry, input is not valid!")
         return
-    if os.path.exists(source_file) and source_file != dest_file:
-        with open(source_file, "r") as source, open(dest_file, "w") as dest:
+    try:
+        overflow_word = word_list[3]
+    except IndexError:
+        print("Nice! Input is correct. Continuing...")
+    else:
+        print(f"Error... Too many arguments provided,"
+              f" first being: {overflow_word}")
+    if cp_command != "cp":
+        print("Error! No cp command provided. Exiting...")
+        return
+    if os.path.exists(src_file_name) and src_file_name != dest_file_name:
+        with open(src_file_name, "r") as source, \
+             open(dest_file_name, "w") as dest:
             for line in source.readlines():
-                dest.writelines(line)
+                dest.write(line)
     else:
         print("Error! Invalid input files.")
