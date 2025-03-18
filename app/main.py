@@ -6,16 +6,16 @@ def copy_file(command : str) -> None:
         print('Command empty or not "cp". Returning...')
         return
     else:
-        word_list = command.split(" ")
+        command_provided = command.split(" ")
     try:
-        cp_command = word_list[0]
-        src_file_name = word_list[1]
-        dest_file_name = word_list[2]
+        cp_command = command_provided[0]
+        src_file_name = command_provided[1]
+        dest_file_name = command_provided[2]
     except IndexError:
         print("Sorry, input is not valid!")
         return
     try:
-        overflow_word = word_list[3]
+        overflow_word = command_provided[3]
     except IndexError:
         print("Nice! Input is correct. Continuing...")
     else:
