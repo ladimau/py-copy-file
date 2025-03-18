@@ -6,24 +6,14 @@ def copy_file(command : str) -> None:
         print('Command empty or not "cp". Returning...')
         return
     else:
-        command_provided = command.split(" ")
-    try:
-        cp_command = command_provided[0]
-        src_file_name = command_provided[1]
-        dest_file_name = command_provided[2]
-    except IndexError:
-        print("Sorry, input is not valid!")
+        cli_arguments = command.split(" ")
+
+    if len(cli_arguments) != 3 or cli_arguments[0] != "cp":
+        print("Usage: cp source_file destination_file")
         return
-    try:
-        overflow_word = command_provided[3]
-    except IndexError:
-        print("Nice! Input is correct. Continuing...")
-    else:
-        print(f"Error... Too many arguments provided,"
-              f" first being: {overflow_word}")
-    if cp_command != "cp":
-        print("Error! No cp command provided. Exiting...")
-        return
+    src_file_name = cli_arguments[1]
+    dest_file_name = cli_arguments[2]
+
     if os.path.exists(src_file_name) and src_file_name != dest_file_name:
         with open(src_file_name, "r") as source, \
              open(dest_file_name, "w") as dest:
